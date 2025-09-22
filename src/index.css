@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --color-primary-blue: #005a8d;
+  --color-secondary-blue: #0188e3;
+  --color-border-blue: #aad7f6;
+  --color-headingText: #344054;
+  --color-bodyText: #475367;
+  --color-light-blue: #f5fafe;
+  --color-black: #1a1a1a;
+  --color-custom-black: #0f1114;
+}
+
+:root {
+  font-family: "Poppins", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
