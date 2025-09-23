@@ -8,7 +8,8 @@
       "@layout/*": ["src/layout/*"],
       "@pages/*": ["src/pages/*"],
       "@Router/*": ["src/Router/*"],
-      "@Data/*": ["src/Data/*"]
+      "@Data/*": ["src/Data/*"],
+      "@store/*": ["src/store/*"]
     }
   },
   "include": ["src"]
