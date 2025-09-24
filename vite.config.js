@@ -18,4 +18,9 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "src/store"),
     },
   },
+  server: {
+    host: true,
+    // host: "0.0.0.0",
+    port: 3848, // default 5173
+  },
 });

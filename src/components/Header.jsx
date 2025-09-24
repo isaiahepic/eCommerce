@@ -16,15 +16,21 @@ const Header = () => {
 
   const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
+  const goHome = () => {
+    navigate("/", { replace: true });
+    window.history.replaceState({}, "", "/");
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div className="absolute fixed top-0 index-20 w-full bg-white flex justify-between items-center py-4 px-8 h-[6rem]">
+    <div className="absolute fixed top-0 z-20 w-full bg-white flex justify-between items-center py-4 px-8 h-[6rem]">
       {/* Logo */}
       <div className="cursor-pointer">
         <img
           src={logo}
           alt="Logo"
           className="h-[4rem] w-auto"
-          onClick={() => navigate("/")}
+          onClick={goHome}
         />
       </div>
 
@@ -33,7 +39,7 @@ const Header = () => {
         {/* Cart */}
         <div
           onClick={() => setShowCart(true)}
-          className="relative flex items-center gap-[0.5rem] bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition"
+          className="relative flex items-center gap-[0.5rem] bg-bodyText hover:bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition"
         >
           <img src={cartIcon} alt="Cart" className="w-[1.5rem] h-[1.5rem]" />
           <p className="text-white text-[1rem]">Cart</p>
@@ -46,12 +52,12 @@ const Header = () => {
         </div>
 
         {/* Auth buttons */}
-        <div className="flex items-center gap-[0.5rem] bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
+        <div className="flex items-center gap-[0.5rem] bg-bodyText hover:bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
           <img src={user1} alt="Cart" className="w-[1.5rem] h-[1.5rem]" />
           <p className="text-white text-[1rem]">Sign In</p>
         </div>
 
-        <div className="flex items-center gap-[0.5rem] bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
+        <div className="flex items-center gap-[0.5rem] bg-bodyText hover:bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
           <img src={user2} alt="Cart" className="w-[1.5rem] h-[1.5rem]" />
           <p className="text-white text-[1rem]">Create Account</p>
         </div>

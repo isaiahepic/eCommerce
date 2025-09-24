@@ -1,10 +1,11 @@
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   addToCart,
   incrementQuantity,
   decrementQuantity,
 } from "@/store/cartSlice";
-import { useNavigate } from "react-router-dom";
 import person from "@assets/lady.jpg";
 import data from "../../Data.json";
 
@@ -12,12 +13,62 @@ const Home = () => {
   const products = data.Items;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const shopSectionRef = useRef(null);
+
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get("page") || "1", 10);
   const cart = useSelector((state) => state.cart.items);
 
+  const [currentPage, setCurrentPage] = useState(initialPage);
+
+  useEffect(() => {
+    if (location.pathname === "/" && !location.search) {
+      setCurrentPage(1);
+    }
+  }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (currentPage === 1) {
+      navigate("/", { replace: true });
+    } else {
+      params.set("page", currentPage);
+      navigate(`/?${params.toString()}`, { replace: true });
+    }
+
+    if (currentPage !== 1 && shopSectionRef.current) {
+      shopSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage, navigate]);
+
+  // pagination
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedProducts = products.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  // Calculate current pagination block (5 pages each)
+  const blockSize = 5;
+  const currentBlock = Math.floor((currentPage - 1) / blockSize);
+  const startPage = currentBlock * blockSize + 1;
+  const endPage = Math.min(startPage + blockSize - 1, totalPages);
+
+  // Handle scroll to shop section
+  const handleScrollToShopSection = () => {
+    if (shopSectionRef.current) {
+      shopSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div>
+    <div className="pb-[3rem]">
       {/* HERO SECTION */}
-      <div className="h-[calc(100vh-6rem)] my-[6rem] mx-8 bg-custom-black flex justify-between items-center text-white rounded-2xl">
+      <div className="h-[calc(100vh-6rem)] mt-[6rem] mx-8 bg-custom-black flex justify-between items-center text-white rounded-2xl">
         <div className="flex flex-col justify-center gap-[2rem] w-1/2 pl-[3rem] py-[2rem] bg-[url('./assets/drink-pouring.gif')] bg-no-repeat bg-center bg-cover h-full rounded-l-2xl">
           <h1 className="font-semibold text-[3rem] tracking-[-0.02em] leading-[3.5rem]">
             Drinks That Define Your Taste
@@ -26,7 +77,10 @@ const Home = () => {
             Handpicked beverages crafted for every mood, every moment. Chill,
             celebrate, or simply refresh - we've got you covered.
           </p>
-          <button className="border border-white w-max py-[1rem] px-[3rem] rounded-full hover:bg-white hover:text-black transition font-semibold cursor-pointer">
+          <button
+            onClick={handleScrollToShopSection}
+            className="border border-white w-max py-[1rem] px-[3rem] rounded-full hover:bg-white hover:text-black transition font-semibold cursor-pointer"
+          >
             Shop Now
           </button>
         </div>
@@ -41,68 +95,134 @@ const Home = () => {
       </div>
 
       {/* SHOPPING SECTION */}
-      <div className="grid grid-cols-3 gap-4 justify-items-center">
-        {products.map((product, index) => {
-          const inCart = cart.find((p) => p.name === product.name);
+      <div ref={shopSectionRef} className="flex flex-col gap-[1rem] pt-[6rem]">
+        <div className="flex flex-col justify-center items-center gap-[0.5rem]">
+          <h2 className="font-semibold text-[2.5rem] mb-2">
+            Shop Our Products
+          </h2>
+          <p className="text-gray-600 text-[1rem] font-normal">
+            Explore our diverse range of beverages, from classic favorites to
+            unique blends. Find your perfect drink today!
+          </p>
+        </div>
 
-          return (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-between h-auto m-8 bg-light-blue p-8 rounded-xl shadow-[2px_4px_18px_4px_rgba(0,0,0,0.09)] transition"
-            >
+        <div className="grid grid-cols-3 gap-4 justify-items-center">
+          {paginatedProducts.map((product, index) => {
+            const inCart = cart.find((p) => p.id === product.id);
+
+            return (
               <div
-                onClick={() => navigate(`/details/${index}`)}
-                className="cursor-pointer"
+                key={index}
+                className="flex flex-col items-center justify-between h-auto m-8 bg-light-blue p-8 rounded-xl shadow-[2px_4px_18px_4px_rgba(0,0,0,0.09)] transition"
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-[20rem] w-[15rem] object-cover"
-                />
-              </div>
+                <div
+                  onClick={() =>
+                    navigate(`/details/${product.id}?page=${currentPage}`)
+                  }
+                  className="cursor-pointer overflow-hidden"
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-[12rem] w-auto object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
 
-              <div className="flex items-center justify-between gap-4 mt-4 mb-2 w-full">
-                <h2 className="font-semibold text-[1.2rem]">{product.name}</h2>
-                <p className="text-[0.9rem] text-gray-600 font-semibold border border-gray-500 p-1 rounded-lg">
-                  ${product.price}
-                </p>
-              </div>
+                <div className="flex items-center justify-between gap-4 mt-4 mb-2 w-full">
+                  <h2 className="font-semibold text-[1.2rem]">
+                    {product.name}
+                  </h2>
+                  <p className="text-[0.9rem] text-gray-600 font-semibold border border-gray-500 p-1 rounded-lg">
+                    ${product.price}
+                  </p>
+                </div>
 
-              <div className=" mb-4">
-                <p className="text-[1rem] text-gray-600">
-                  {product.description}
-                </p>
-              </div>
+                <div className=" mb-4">
+                  <p className="text-[1rem] text-gray-600">
+                    {product.description}
+                  </p>
+                </div>
 
-              <div className="flex items-center gap-4 mt-4 w-full">
-                {!inCart ? (
-                  <button
-                    onClick={() => dispatch(addToCart(product))}
-                    className="w-full px-[2rem] py-[1rem] bg-bodyText text-white text-[0.9rem] font-medium hover:font-semibold hover:bg-black rounded-full cursor-pointer"
-                  >
-                    Add to Cart
-                  </button>
-                ) : (
-                  <div className="flex items-center justify-center gap-4 w-full">
+                <div className="flex items-center gap-4 mt-4 w-full">
+                  {!inCart ? (
                     <button
-                      onClick={() => dispatch(decrementQuantity(product.id))}
-                      className="h-[2rem] w-[2rem] bg-gray-300 text-[1.5rem] rounded-full leading-none cursor-pointer"
+                      onClick={() => dispatch(addToCart(product))}
+                      className="w-full px-[2rem] py-[1rem] bg-bodyText text-white text-[0.9rem] font-medium hover:font-semibold hover:bg-black rounded-full cursor-pointer"
                     >
-                      -
+                      Add to Cart
                     </button>
-                    <span className="font-semibold">{inCart.quantity}</span>
-                    <button
-                      onClick={() => dispatch(incrementQuantity(product.id))}
-                      className="h-[2rem] w-[2rem] bg-gray-300 text-[1.5rem] rounded-full leading-none cursor-pointer"
-                    >
-                      +
-                    </button>
-                  </div>
-                )}
+                  ) : (
+                    <div className="flex items-center justify-center gap-4 w-full">
+                      <button
+                        onClick={() => dispatch(decrementQuantity(product.id))}
+                        className="h-[2rem] w-[2rem] bg-gray-300 text-[1.5rem] rounded-full leading-none cursor-pointer "
+                      >
+                        -
+                      </button>
+                      <span className="font-semibold">{inCart.quantity}</span>
+                      <button
+                        onClick={() => dispatch(incrementQuantity(product.id))}
+                        className="h-[2rem] w-[2rem] bg-gray-300 text-[1.5rem] rounded-full leading-none cursor-pointer"
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+      </div>
+
+      {/* PAGINATION */}
+      <div className="flex justify-center items-center gap-[2rem] mt-8">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className={`px-3 py-1 border rounded disabled:opacity-50 ${
+            currentPage === 1
+              ? "cursor-not-allowed"
+              : "cursor-pointer hover:bg-black hover:text-white"
+          }`}
+        >
+          Prev
+        </button>
+
+        <div className="flex items-center gap-[0.5rem]">
+          {Array.from({ length: endPage - startPage + 1 }, (_, i) => {
+            const pageNum = startPage + i;
+            return (
+              <button
+                key={pageNum}
+                onClick={() => setCurrentPage(pageNum)}
+                className={`px-3 py-1 border rounded-full cursor-pointer ${
+                  currentPage === pageNum ? "bg-black text-white" : ""
+                }`}
+              >
+                {pageNum}
+              </button>
+            );
+          })}
+
+          <span className="ml-2 text-[1.2rem] font-medium">
+            of {totalPages}
+          </span>
+        </div>
+
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+          className={`px-3 py-1 border rounded disabled:opacity-50 ${
+            currentPage === totalPages
+              ? "cursor-not-allowed"
+              : "cursor-pointer hover:bg-black hover:text-white"
+          }`}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
