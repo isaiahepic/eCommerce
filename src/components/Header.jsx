@@ -23,15 +23,22 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute fixed top-0 z-20 w-full bg-white flex justify-between items-center py-4 px-8 h-[6rem]">
+    <div className="absolute fixed top-0 z-20 w-full bg-white flex justify-between items-center py-4 px-8 h-[6rem] border-b border-gray-200">
       {/* Logo */}
-      <div className="cursor-pointer">
+      <div className="flex items-center gap-[1rem]">
         <img
           src={logo}
           alt="Logo"
-          className="h-[4rem] w-auto"
+          className="h-[4rem] w-auto cursor-pointer"
           onClick={goHome}
         />
+
+        <p
+          onClick={() => navigate("about")}
+          className="text-bodyText text-[1rem] cursor-pointer hover:font-semibold hover:underline"
+        >
+          About us
+        </p>
       </div>
 
       {/* Nav */}

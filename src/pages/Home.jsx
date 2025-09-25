@@ -68,8 +68,8 @@ const Home = () => {
   return (
     <div className="pb-[3rem]">
       {/* HERO SECTION */}
-      <div className="h-[calc(100vh-6rem)] mt-[6rem] mx-8 bg-custom-black flex justify-between items-center text-white rounded-2xl">
-        <div className="flex flex-col justify-center gap-[2rem] w-1/2 pl-[3rem] py-[2rem] bg-[url('./assets/drink-pouring.gif')] bg-no-repeat bg-center bg-cover h-full rounded-l-2xl">
+      <div className="h-[calc(100vh-6rem)] mt-[6rem] bg-custom-black flex justify-between items-center text-white">
+        <div className="flex flex-col justify-center gap-[2rem] w-1/2 pl-[3rem] py-[2rem] bg-[url('./assets/drink-pouring.gif')] bg-no-repeat bg-center bg-cover h-full">
           <h1 className="font-semibold text-[3rem] tracking-[-0.02em] leading-[3.5rem]">
             Drinks That Define Your Taste
           </h1>
@@ -85,19 +85,66 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="w-1/2 h-full flex items-center justify-center rounded-2xl">
+        <div className="w-1/2 h-full flex items-center justify-center">
           <img
             src={person}
             alt="Person"
-            className="w-full h-full object-cover rounded-r-2xl"
+            className="w-full h-full object-cover"
           />
+        </div>
+      </div>
+
+      {/* WHY CHOOSE US SECTION */}
+      <div className="relative h-screen flex items-center justify-center">
+        {/* Background image */}
+        <div className="absolute inset-0 bg-[url('./assets/party.jpg')] bg-cover bg-center"></div>
+
+        {/* Overlay to dim the background */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="relative z-10 p-[4rem] flex flex-col items-center justify-center gap-[2rem]">
+          <h2 className="text-center text-[2.5rem] font-semibold mb-4 text-white">
+            Why Choose Us?
+          </h2>
+          <p className="text-center text-gray-200 mb-12">
+            We're not just about drinks - we're about delivering an experience
+            that keeps you coming back.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="p-6 bg-white/90 backdrop-blur-sm rounded-2xl">
+              <h3 className="text-[1.2rem] font-bold mb-3">Premium Quality</h3>
+              <p className="text-[0.9rem] text-gray-600">
+                Every product in our catalog is carefully selected to ensure
+                freshness, flavor, and satisfaction.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white/90 backdrop-blur-sm rounded-2xl">
+              <h3 className="text-[1.2rem] font-bold mb-3">Fast Delivery</h3>
+              <p className="text-[0.9rem] text-gray-600">
+                Your favorite drinks, delivered right to your doorstep in no
+                time.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white/90 backdrop-blur-sm rounded-2xl ">
+              <h3 className="text-[1.2rem] font-bold mb-3">
+                Affordable Prices
+              </h3>
+              <p className="text-[0.9rem] text-gray-600">
+                Enjoy premium beverages without breaking the bank—taste luxury
+                at everyday prices.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* SHOPPING SECTION */}
       <div ref={shopSectionRef} className="flex flex-col gap-[1rem] pt-[6rem]">
         <div className="flex flex-col justify-center items-center gap-[0.5rem]">
-          <h2 className="font-semibold text-[2.5rem] mb-2">
+          <h2 className="font-semibold text-[2.5rem] mb-2 ">
             Shop Our Products
           </h2>
           <p className="text-gray-600 text-[1rem] font-normal">
