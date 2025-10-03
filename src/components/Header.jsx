@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { clearCart, removeFromCart } from "@/store/cartSlice";
 import { X } from "lucide-react";
 import cartIcon from "@/assets/cart.png";
@@ -20,6 +21,29 @@ const Header = () => {
     navigate("/", { replace: true });
     window.history.replaceState({}, "", "/");
     window.scrollTo(0, 0);
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/paystack/initialize",
+        {
+          email: "user@gmail.com", // To replace with actual user email
+          amount: total,
+        }
+      );
+      const { data } = response.data;
+      console.log("Paystack response data:", data);
+      if (data && data.authorization_url) {
+        window.open(data.authorization_url, "_blank");
+      } else {
+        console.error("Invalid Paystack response:", response.data);
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+    } finally {
+      setShowCart(false);
+    }
   };
 
   return (
@@ -91,7 +115,7 @@ const Header = () => {
 
                     <div className="flex items-center justify-end gap-4">
                       <p>
-                        {item.quantity} × ${item.price}
+                        {item.quantity} × ₦{item.price}
                       </p>
                       <button
                         onClick={() => dispatch(removeFromCart(item.id))}
@@ -114,9 +138,12 @@ const Header = () => {
             <div className="flex flex-col gap-[1.5rem] py-[1rem]">
               <div className="flex items-center justify-between">
                 <p className="font-semibold text-[1.2rem]">
-                  Total: ${total.toFixed(2)}
+                  Total: ₦{total.toFixed(2)}
                 </p>
-                <button className="bg-gray-800 text-white px-[1.5rem] py-[0.5rem] rounded-full cursor-pointer hover:bg-black hover:scale-105 transition">
+                <button
+                  onClick={handleCheckout}
+                  className="bg-gray-800 text-white px-[1.5rem] py-[0.5rem] rounded-full cursor-pointer hover:bg-black hover:scale-105 transition"
+                >
                   Proceed to Pay Now
                 </button>
               </div>

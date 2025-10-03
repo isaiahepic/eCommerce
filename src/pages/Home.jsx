@@ -89,7 +89,7 @@ const Home = () => {
           <img
             src={person}
             alt="Person"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
           />
         </div>
       </div>
@@ -180,7 +180,7 @@ const Home = () => {
                     {product.name}
                   </h2>
                   <p className="text-[0.9rem] text-gray-600 font-semibold border border-gray-500 p-1 rounded-lg">
-                    ${product.price}
+                    ₦{product.price}
                   </p>
                 </div>
 

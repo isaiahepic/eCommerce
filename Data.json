@@ -4,140 +4,140 @@
       "id": "1",
       "name": "Coca-Cola Classic",
       "description": "The original, refreshing cola with a crisp and timeless taste.",
-      "price": "1.50",
+      "price": "193.50",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "2",
       "name": "Pepsi",
       "description": "Bold, sweet, and refreshing cola flavor loved worldwide.",
-      "price": "1.40",
+      "price": "187.40",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "3",
       "name": "Sprite",
       "description": "Lemon-lime soda with a clean, crisp, and refreshing taste.",
-      "price": "1.30",
+      "price": "147.30",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "4",
       "name": "Fanta Orange",
       "description": "Fruity orange soda bursting with fun and flavor.",
-      "price": "1.25",
+      "price": "199.25",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "5",
       "name": "Mountain Dew",
       "description": "Citrus-flavored soda packed with bold energy and refreshment.",
-      "price": "1.50",
+      "price": "190.50",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "6",
       "name": "Red Bull",
       "description": "Energy drink that gives you wings, perfect for an instant boost.",
-      "price": "2.50",
+      "price": "220.50",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "7",
       "name": "Monster Energy",
       "description": "Powerful energy drink with a bold, sweet flavor.",
-      "price": "2.20",
+      "price": "280.20",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "8",
       "name": "Gatorade Lemon-Lime",
       "description": "Electrolyte sports drink that hydrates and replenishes energy.",
-      "price": "1.80",
+      "price": "180",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "9",
       "name": "Powerade Mountain Berry Blast",
       "description": "Refreshing sports drink with electrolytes and fruity berry taste.",
-      "price": "1.75",
+      "price": "175",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "10",
       "name": "Tropicana Orange Juice",
       "description": "100% pure squeezed orange juice with natural sweetness.",
-      "price": "2.00",
+      "price": "200",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "11",
       "name": "Minute Maid Apple Juice",
       "description": "Deliciously sweet and crisp apple juice made from real apples.",
-      "price": "1.90",
+      "price": "180.90",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "12",
       "name": "Arizona Iced Tea Lemon",
       "description": "Refreshing iced tea blended with lemon flavor.",
-      "price": "1.50",
+      "price": "120.50",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "13",
       "name": "Lipton Iced Tea Peach",
       "description": "Smooth iced tea with a sweet, fruity peach twist.",
-      "price": "1.60",
+      "price": "115.60",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "14",
       "name": "Starbucks Frappuccino Mocha",
       "description": "Ready-to-drink coffee with rich mocha flavor and creamy texture.",
-      "price": "3.20",
+      "price": "310.20",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "15",
       "name": "Nescafé Cold Brew",
       "description": "Smooth and bold cold brew coffee for a refreshing caffeine hit.",
-      "price": "2.80",
+      "price": "200.80",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "16",
       "name": "San Pellegrino Sparkling Water",
       "description": "Premium Italian sparkling mineral water with a crisp finish.",
-      "price": "1.70",
+      "price": "130.70",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "17",
       "name": "LaCroix Lime Sparkling Water",
       "description": "Refreshing, naturally flavored sparkling water with zero calories.",
-      "price": "1.40",
+      "price": "140.40",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "18",
       "name": "Vitamin Water Power-C Dragonfruit",
       "description": "Flavored water with vitamins, electrolytes, and dragonfruit taste.",
-      "price": "1.90",
+      "price": "190",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "19",
       "name": "Honest Organic Green Tea",
       "description": "Lightly sweetened organic green tea with natural antioxidants.",
-      "price": "2.10",
+      "price": "210",
       "image": "/src/assets/coke.jpg"
     },
     {
-      "id": "20",
+      "id": "120",
       "name": "Perrier Sparkling Water Lemon",
       "description": "Classic French sparkling water infused with lemon flavor.",
-      "price": "1.80",
+      "price": "100",
       "image": "/src/assets/coke.jpg"
     }
   ]
