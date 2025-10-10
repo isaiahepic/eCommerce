@@ -4,49 +4,49 @@
       "id": "1",
       "name": "Coca-Cola Classic",
       "description": "The original, refreshing cola with a crisp and timeless taste.",
-      "price": "193.50",
+      "price": "193",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "2",
       "name": "Pepsi",
       "description": "Bold, sweet, and refreshing cola flavor loved worldwide.",
-      "price": "187.40",
+      "price": "187",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "3",
       "name": "Sprite",
       "description": "Lemon-lime soda with a clean, crisp, and refreshing taste.",
-      "price": "147.30",
+      "price": "147",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "4",
       "name": "Fanta Orange",
       "description": "Fruity orange soda bursting with fun and flavor.",
-      "price": "199.25",
+      "price": "199",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "5",
       "name": "Mountain Dew",
       "description": "Citrus-flavored soda packed with bold energy and refreshment.",
-      "price": "190.50",
+      "price": "190",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "6",
       "name": "Red Bull",
       "description": "Energy drink that gives you wings, perfect for an instant boost.",
-      "price": "220.50",
+      "price": "220",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "7",
       "name": "Monster Energy",
       "description": "Powerful energy drink with a bold, sweet flavor.",
-      "price": "280.20",
+      "price": "280",
       "image": "/src/assets/coke.jpg"
     },
     {
@@ -74,49 +74,49 @@
       "id": "11",
       "name": "Minute Maid Apple Juice",
       "description": "Deliciously sweet and crisp apple juice made from real apples.",
-      "price": "180.90",
+      "price": "180",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "12",
       "name": "Arizona Iced Tea Lemon",
       "description": "Refreshing iced tea blended with lemon flavor.",
-      "price": "120.50",
+      "price": "120",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "13",
       "name": "Lipton Iced Tea Peach",
       "description": "Smooth iced tea with a sweet, fruity peach twist.",
-      "price": "115.60",
+      "price": "115",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "14",
       "name": "Starbucks Frappuccino Mocha",
       "description": "Ready-to-drink coffee with rich mocha flavor and creamy texture.",
-      "price": "310.20",
+      "price": "310",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "15",
       "name": "Nescafé Cold Brew",
       "description": "Smooth and bold cold brew coffee for a refreshing caffeine hit.",
-      "price": "200.80",
+      "price": "208",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "16",
       "name": "San Pellegrino Sparkling Water",
       "description": "Premium Italian sparkling mineral water with a crisp finish.",
-      "price": "130.70",
+      "price": "137",
       "image": "/src/assets/coke.jpg"
     },
     {
       "id": "17",
       "name": "LaCroix Lime Sparkling Water",
       "description": "Refreshing, naturally flavored sparkling water with zero calories.",
-      "price": "140.40",
+      "price": "140",
       "image": "/src/assets/coke.jpg"
     },
     {

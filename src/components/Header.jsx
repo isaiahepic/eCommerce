@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+// import axios from "axios";
 import { clearCart, removeFromCart } from "@/store/cartSlice";
 import { X } from "lucide-react";
 import cartIcon from "@/assets/cart.png";
 import logo from "@/assets/logo.png";
 import user1 from "@assets/user.png";
 import user2 from "@assets/user1.png";
+import { initEpicPay, openPaymentSheet } from "epic-pay-sdk";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -17,32 +18,69 @@ const Header = () => {
 
   const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
+  // Initialize Epic Pay SDK
+  useEffect(() => {
+    initEpicPay({
+      merchantId: "demo_merchant_123",
+      environment: "sandbox",
+      onEvent: (e) => console.log("[EpicPay]", e),
+    });
+  }, []);
+
+  // Navigate to Home
   const goHome = () => {
     navigate("/", { replace: true });
     window.history.replaceState({}, "", "/");
     window.scrollTo(0, 0);
   };
 
+  // Handle Checkout with Paystack
+  // const handleCheckout = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:3000/api/paystack/initialize",
+  //       {
+  //         email: "user@gmail.com", // To replace with actual user email
+  //         amount: total,
+  //       }
+  //     );
+  //     const { data } = response.data;
+  //     console.log("Paystack response data:", data);
+  //     if (data && data.authorization_url) {
+  //       window.open(data.authorization_url, "_blank");
+  //     } else {
+  //       console.error("Invalid Paystack response:", response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error("Checkout error:", error);
+  //   } finally {
+  //     setShowCart(false);
+  //   }
+  // };
+
+  // Handle Checkout with Epic Pay
   const handleCheckout = async () => {
+    console.log("Initiating Epic Pay checkout for amount:", total);
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/paystack/initialize",
-        {
-          email: "user@gmail.com", // To replace with actual user email
-          amount: total,
-        }
-      );
-      const { data } = response.data;
-      console.log("Paystack response data:", data);
-      if (data && data.authorization_url) {
-        window.open(data.authorization_url, "_blank");
+      const result = await openPaymentSheet({
+        amount: total,
+        currency: "NGN",
+        customer: {
+          email: "user@gmail.com",
+        },
+        paymentMethods: ["card", "bank", "epic"],
+      });
+
+      if (result.status === "succeeded") {
+        alert(`✅ Payment Success! Transaction ID: ${result.transactionId}`);
+        dispatch(clearCart());
+        setShowCart(false);
       } else {
-        console.error("Invalid Paystack response:", response.data);
+        alert("⚠️ Payment not completed.");
       }
-    } catch (error) {
-      console.error("Checkout error:", error);
-    } finally {
-      setShowCart(false);
+    } catch (err) {
+      console.error("[EpicPay Error]", err);
+      alert("❌ Payment failed. Please try again.");
     }
   };
 
