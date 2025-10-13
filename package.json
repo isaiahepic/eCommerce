@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.12.2",
+    "epic-pay-sdk": "^0.1.0",
     "lucide-react": "^0.544.0",
     "module-alias": "^2.2.3",
     "react": "^19.1.1",
@@ -20,8 +21,8 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.1",
     "redux-persist": "^6.0.0",
-    "tailwindcss": "^4.1.13",
-    "epic-pay-sdk": "file:../epic-pay-sdk/epic-pay-sdk-0.1.0.tgz"
+    "sweetalert": "^2.1.2",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

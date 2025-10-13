@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import sweetAlert from "sweetalert";
 // import axios from "axios";
 import { clearCart, removeFromCart } from "@/store/cartSlice";
 import { X } from "lucide-react";
@@ -72,15 +73,31 @@ const Header = () => {
       });
 
       if (result.status === "succeeded") {
-        alert(`✅ Payment Success! Transaction ID: ${result.transactionId}`);
+        sweetAlert({
+          title: "PAYMENT SUCCESS",
+          text: `Transaction ID: ${result.transactionId}`,
+          icon: "success",
+          button: "OK",
+        });
+        // alert(`✅ Payment Success! Transaction ID: ${result.transactionId}`);
         dispatch(clearCart());
         setShowCart(false);
       } else {
-        alert("⚠️ Payment not completed.");
+        // alert("⚠️ Payment not completed.");
+        sweetAlert({
+          title: "PAYMENT NOT COMPLETED",
+          icon: "warning",
+          button: "OK",
+        });
       }
     } catch (err) {
       console.error("[EpicPay Error]", err);
-      alert("❌ Payment failed. Please try again.");
+      // alert("❌ Payment failed. Please try again.");
+      sweetAlert({
+        title: "PAYMENT FAILED",
+        icon: "failure",
+        button: "OK",
+      });
     }
   };
 
