@@ -6,7 +6,7 @@ import sweetAlert from "sweetalert";
 import { clearCart, removeFromCart } from "@/store/cartSlice";
 import { X } from "lucide-react";
 import cartIcon from "@/assets/cart.png";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.jpg";
 import user1 from "@assets/user.png";
 import user2 from "@assets/user1.png";
 import { initEpicPay, openPaymentSheet } from "epic-pay-sdk";
@@ -61,7 +61,9 @@ const Header = () => {
 
   // Handle Checkout with Epic Pay
   const handleCheckout = async () => {
-    console.log("Initiating Epic Pay checkout for amount:", total);
+    if (cart.length === 0) return;
+
+    // console.log("Initiating Epic Pay checkout for amount:", total);
     try {
       const result = await openPaymentSheet({
         amount: total,
@@ -114,7 +116,7 @@ const Header = () => {
 
         <p
           onClick={() => navigate("about")}
-          className="text-bodyText text-[1rem] cursor-pointer hover:font-semibold hover:underline"
+          className="text-[#2a9444] text-[1rem] cursor-pointer font-semibold hover:underline"
         >
           About us
         </p>
@@ -125,7 +127,7 @@ const Header = () => {
         {/* Cart */}
         <div
           onClick={() => setShowCart(true)}
-          className="relative flex items-center gap-[0.5rem] bg-bodyText hover:bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition"
+          className="relative flex items-center gap-[0.5rem] bg-[#2a9444]/80 hover:bg-[#2a9444] py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition"
         >
           <img src={cartIcon} alt="Cart" className="w-[1.5rem] h-[1.5rem]" />
           <p className="text-white text-[1rem]">Cart</p>
@@ -138,13 +140,13 @@ const Header = () => {
         </div>
 
         {/* Auth buttons */}
-        <div className="flex items-center gap-[0.5rem] bg-bodyText hover:bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
-          <img src={user1} alt="Cart" className="w-[1.5rem] h-[1.5rem]" />
+        <div className="flex items-center gap-[0.5rem] bg-[#2a9444]/80 hover:bg-[#2a9444] py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
+          <img src={user1} alt="user-icon" className="w-[1.5rem] h-[1.5rem]" />
           <p className="text-white text-[1rem]">Sign In</p>
         </div>
 
-        <div className="flex items-center gap-[0.5rem] bg-bodyText hover:bg-black py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
-          <img src={user2} alt="Cart" className="w-[1.5rem] h-[1.5rem]" />
+        <div className="flex items-center gap-[0.5rem] bg-[#2a9444]/80 hover:bg-[#2a9444] py-2 px-4 rounded-full cursor-pointer hover:scale-105 transition">
+          <img src={user2} alt="user-icon" className="w-[1.5rem] h-[1.5rem]" />
           <p className="text-white text-[1rem]">Create Account</p>
         </div>
       </div>
@@ -154,7 +156,7 @@ const Header = () => {
         <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex justify-end">
           <div className="bg-white w-[25rem] h-full p-6 flex flex-col">
             <div className="flex items-center justify-between pb-[1.5rem]">
-              <h2 className="font-bold text-xl">Your Cart</h2>
+              <h2 className="font-bold text-xl text-[#2a9444]">Your Cart</h2>
               <button onClick={() => setShowCart(false)}>
                 <X className="h-[1.5rem] w-[1.5rem] hover:text-red-500 cursor-pointer" />
               </button>
@@ -197,7 +199,7 @@ const Header = () => {
                 </p>
                 <button
                   onClick={handleCheckout}
-                  className="bg-gray-800 text-white px-[1.5rem] py-[0.5rem] rounded-full cursor-pointer hover:bg-black hover:scale-105 transition"
+                  className="bg-[#2a9444]/80 text-white px-[1.5rem] py-[0.5rem] rounded-full cursor-pointer hover:bg-[#2a9444] hover:scale-105 transition"
                 >
                   Proceed to Pay Now
                 </button>

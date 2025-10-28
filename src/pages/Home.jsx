@@ -6,7 +6,7 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "@/store/cartSlice";
-import person from "@assets/lady.jpg";
+import person from "@assets/ladyWithDrink.jpg";
 import data from "../../Data.json";
 
 const Home = () => {
@@ -85,11 +85,11 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="w-1/2 h-full flex items-center justify-center">
+        <div className="w-1/2 h-full flex items-center justify-center bg-[#2a9444]/70">
           <img
             src={person}
             alt="Person"
-            className="w-full h-full object-cover "
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
@@ -100,39 +100,39 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('./assets/party.jpg')] bg-cover bg-center"></div>
 
         {/* Overlay to dim the background */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-[#2a9444]/60"></div>
 
         <div className="relative z-10 p-[4rem] flex flex-col items-center justify-center gap-[2rem]">
           <h2 className="text-center text-[2.5rem] font-semibold mb-4 text-white">
             Why Choose Us?
           </h2>
-          <p className="text-center text-gray-200 mb-12">
+          <p className="text-center text-gray-100 mb-12">
             We're not just about drinks - we're about delivering an experience
             that keeps you coming back.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 bg-white/90 backdrop-blur-sm rounded-2xl">
+            <div className="p-6 bg-[#2a9444] backdrop-blur-sm rounded-2xl text-white">
               <h3 className="text-[1.2rem] font-bold mb-3">Premium Quality</h3>
-              <p className="text-[0.9rem] text-gray-600">
+              <p className="text-[0.9rem]">
                 Every product in our catalog is carefully selected to ensure
                 freshness, flavor, and satisfaction.
               </p>
             </div>
 
-            <div className="p-6 bg-white/90 backdrop-blur-sm rounded-2xl">
+            <div className="p-6 bg-[#2a9444] backdrop-blur-sm rounded-2xl text-white">
               <h3 className="text-[1.2rem] font-bold mb-3">Fast Delivery</h3>
-              <p className="text-[0.9rem] text-gray-600">
+              <p className="text-[0.9rem]">
                 Your favorite drinks, delivered right to your doorstep in no
                 time.
               </p>
             </div>
 
-            <div className="p-6 bg-white/90 backdrop-blur-sm rounded-2xl ">
+            <div className="p-6 bg-[#2a9444] backdrop-blur-sm rounded-2xl text-white">
               <h3 className="text-[1.2rem] font-bold mb-3">
                 Affordable Prices
               </h3>
-              <p className="text-[0.9rem] text-gray-600">
+              <p className="text-[0.9rem]">
                 Enjoy premium beverages without breaking the bank—taste luxury
                 at everyday prices.
               </p>
@@ -142,7 +142,10 @@ const Home = () => {
       </div>
 
       {/* SHOPPING SECTION */}
-      <div ref={shopSectionRef} className="flex flex-col gap-[1rem] pt-[6rem]">
+      <div
+        ref={shopSectionRef}
+        className="flex flex-col gap-[1rem] pt-[6rem] bg-[#2a9444]/40"
+      >
         <div className="flex flex-col justify-center items-center gap-[0.5rem]">
           <h2 className="font-semibold text-[2.5rem] mb-2 ">
             Shop Our Products
@@ -194,7 +197,7 @@ const Home = () => {
                   {!inCart ? (
                     <button
                       onClick={() => dispatch(addToCart(product))}
-                      className="w-full px-[2rem] py-[1rem] bg-bodyText text-white text-[0.9rem] font-medium hover:font-semibold hover:bg-black rounded-full cursor-pointer"
+                      className="w-full px-[2rem] py-[1rem] bg-[#2a9444]/80 hover:bg-[#2a9444] text-white text-[0.9rem] font-medium hover:font-semibold rounded-full cursor-pointer"
                     >
                       Add to Cart
                     </button>
@@ -230,7 +233,7 @@ const Home = () => {
           className={`px-3 py-1 border rounded disabled:opacity-50 ${
             currentPage === 1
               ? "cursor-not-allowed"
-              : "cursor-pointer hover:bg-black hover:text-white"
+              : "cursor-pointer hover:bg-[#2a9444] hover:text-white"
           }`}
         >
           Prev
@@ -244,7 +247,7 @@ const Home = () => {
                 key={pageNum}
                 onClick={() => setCurrentPage(pageNum)}
                 className={`px-3 py-1 border rounded-full cursor-pointer ${
-                  currentPage === pageNum ? "bg-black text-white" : ""
+                  currentPage === pageNum ? "bg-[#2a9444] text-white" : ""
                 }`}
               >
                 {pageNum}
@@ -265,7 +268,7 @@ const Home = () => {
           className={`px-3 py-1 border rounded disabled:opacity-50 ${
             currentPage === totalPages
               ? "cursor-not-allowed"
-              : "cursor-pointer hover:bg-black hover:text-white"
+              : "cursor-pointer hover:bg-[#2a9444] hover:text-white"
           }`}
         >
           Next
